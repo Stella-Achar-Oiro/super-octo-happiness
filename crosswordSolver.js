@@ -1,4 +1,4 @@
-const fs = require('fs');  // If you want to handle logging or file output
+//const fs = require('fs');  // If you want to handle logging or file output
 
 // Helper function to log messages with different levels
 function log(message, level = 'INFO') {
@@ -170,7 +170,7 @@ function sortWordsByHeuristics(words, positions) {
 // The main solver function using backtracking and memoization
 function solveCrossword(puzzle, words) {
     const grid = parsePuzzle(puzzle);
-    if (!grid || !validateInput(puzzle, words)) return 'Error';
+    if (!grid || !validateInput(puzzle, words) || words.length < 3) return 'Error';
 
     const positions = findWordPositions(grid);
     if (!validateWordCount(grid, words)) return 'Error';
@@ -295,3 +295,6 @@ runTest('', 123);
 
 // Test case 10
 runTest('2001\n0..0\n1000\n0..0', ['aaab', 'aaac', 'aaad', 'aaae']);
+
+// Test case 10
+runTest('2000\n0...\n0...\n0...', ['abba', 'assa']);
